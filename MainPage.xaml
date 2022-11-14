@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Picket.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Picker Title="Выберите человека" SelectedIndexChanged="Picker_SelectedIndexChanged" ItemDisplayBinding="{Binding Name}" ItemsSource="{Binding people}" />
+            <Picker Title="Выберите фамилию" SelectedIndexChanged="Picker_SelectedIndexChanged" ItemDisplayBinding="{Binding Surname}" ItemsSource="{Binding people}" />
+            <!--<Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>One</x:String>
+                        <x:String>Two</x:String>
+                        <x:String>Three</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>-->
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -4,9 +4,15 @@
              x:Class="Picket.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout>
-            <Picker Title="Выберите человека" SelectedIndexChanged="Picker_SelectedIndexChanged" ItemDisplayBinding="{Binding Name}" ItemsSource="{Binding people}" />
-            <Picker Title="Выберите фамилию" SelectedIndexChanged="Picker_SelectedIndexChanged" ItemDisplayBinding="{Binding Surname}" ItemsSource="{Binding people}" />
+        <VerticalStackLayout> 
+            <Picker x:Name="FirstPicker" Title="Выберите человека" SelectedIndexChanged="PickerFirst"  />
+            <Picker x:Name="SecondPicker" Title="Выберите параметр" SelectedIndexChanged="PickerTwo" />
+        
+
+            <Entry x:Name="Entry"></Entry>
+            <Button x:Name="Button" Clicked="ButtonClicked" ></Button>
+           
+
             <!--<Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>One</x:String>

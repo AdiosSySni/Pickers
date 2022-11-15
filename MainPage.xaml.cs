@@ -6,36 +6,67 @@ namespace Picket;
 public partial class MainPage : ContentPage
 {
     public ObservableCollection<Person> people { get; set; }
-    //public Person person { get; set; }
-    //public Person person1{ get; set; }
-
+    //public string textValue;
     public MainPage()
 	{
         people = new ObservableCollection<Person>();
-       
+        people.Add(new Person("Гегель", "Пауль", "Викторович")); // 0
+        people.Add(new Person("Васькин", "Илья", "Владимирович")); // 1
 
-        //person = new Person();
-        //person.Name = "Alexander";
-        //person.Surname = "Vladimir";
-        //person.Patronomic = "Sanchis";
-
-        //person1 = new Person();
-        //person1.Name = "Alexander1";
-        //person1.Surname = "Vladimi1r";
-        //person1.Patronomic = "Sanc1his";
-
-        people.Add(new Person("Paul", "Vlad", "Pavlov"));
-        people.Add(new Person("Elena", "Alexander", "Pavlov"));
-
-        BindingContext = this;
+        //BindingContext = this;
 
         InitializeComponent();
+        FirstPicker.ItemsSource = people;
+        FirstPicker.ItemDisplayBinding = new Binding("Surname");
+
+        //Entry.Text = textValue;
     }
        
+	public void PickerFirst(object sender, EventArgs e)
+    {
+        ObservableCollection<String> strings = new ObservableCollection<string>(); // коллекция свойств обьекта
 
-	public void Picker_SelectedIndexChanged(object sender, EventArgs e)
-	{
-        
+        var person = people[(sender as Picker).SelectedIndex];// обьект
+
+        SecondPicker.ItemsSource = strings;
+        strings.Add(person.Surname);
+        strings.Add(person.Name);
+        strings.Add(person.Patronymic);
+    }
+
+    public void PickerTwo(object sender, EventArgs e)
+    {
+        if((sender as Picker).SelectedItem != null)
+        {
+            Entry.Text = (sender as Picker).SelectedItem.ToString();
+        }
+    }
+
+    public void ButtonClicked(object sender, EventArgs e)
+    { 
+        if ((FirstPicker.SelectedItem as Person).Name== SecondPicker.SelectedItem as string)
+        {
+            (FirstPicker.SelectedItem as Person).Name = Entry.Text;
+        }
+
+        if ((FirstPicker.SelectedItem as Person).Surname == SecondPicker.SelectedItem as string)
+        {
+            (FirstPicker.SelectedItem as Person).Surname = Entry.Text;
+        }
+
+        if ((FirstPicker.SelectedItem as Person).Patronymic == SecondPicker.SelectedItem as string)
+        {
+            (FirstPicker.SelectedItem as Person).Patronymic = Entry.Text;
+        }
+
+        //else if (c == d.Name)
+        //{
+        //    d.Name = Entry.Text;
+        //}
+        //else
+        //{
+        //    d.Patronymic = Entry.Text;
+        //}   
     }
 
 }
